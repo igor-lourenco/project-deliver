@@ -30,6 +30,14 @@ public class OrderService {
 		List<Order> entity = repository.findOrdersWithProducts();
 		return entity.stream().map(x -> new OrderDTO(x)).collect(Collectors.toList());
 	}
+	
+	@Transactional
+	public OrderDTO setDelivered(Long id) {
+		Order entity = repository.getOne(id);
+		entity.setStatus(OrderStatus.DELIVERED);
+		entity = repository.save(entity);
+		return new OrderDTO(entity);
+	}
 
 	@Transactional
 	public OrderDTO insert(OrderDTO dto) {
