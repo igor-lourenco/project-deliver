@@ -20,7 +20,7 @@ public class ProductResource {
 	
 	@GetMapping
 	public ResponseEntity<List<ProductDTO>> findAll(){
-		List<ProductDTO> dto = service.findAll();
+		List<ProductDTO> dto = service.findAllPaged();
 		return ResponseEntity.ok().body(dto);
 	}
 }

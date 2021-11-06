@@ -18,8 +18,8 @@ public class ProductService {
 	private ProductRepository repository;
 	
 	@Transactional(readOnly = true) //só leitura no banco
-	public List<ProductDTO> findAll(){
-		List<Product> entity = repository.findAll();
+	public List<ProductDTO> findAllPaged(){
+		List<Product> entity = repository.findAllByOrderByNameAsc();
 		return entity.stream().map(x -> new ProductDTO(x)).collect(Collectors.toList());
 	}
 }
